@@ -17,10 +17,33 @@ class Page extends React.Component  {
     constructor(props){
         super(props);
         this.state = {
-
-        }
+            balance:'20000',
+            value:'',
+            userInput: '',
+            income: [{
+                id: 1,
+                type:"PayCheck",
+                value: 1500,
+                },
+                {
+                id: 2,
+                type:"Stock",
+                value: 50,
+                },
+                {
+                id: 3,
+                type:"Youtube",
+                value: 200,
+                },
+                ],
+            expense: [],
+                    }
     }
+
+  
+
     render(){
+        const {income, expense, balance} = this.state;
         return(
       <div>
       
@@ -29,7 +52,7 @@ class Page extends React.Component  {
                 <Typography variant="h6" style={{ flex: 1 }}>
                     Expense Tracker
                 </Typography>
-            <Button color="inherit">Hi, {this.props.values.firstName}</Button>
+            <Button color="inherit">Hi, {this.props.values.userName}</Button>
             </Toolbar>
         </AppBar>
         <Container maxWidth="sm">
@@ -38,13 +61,13 @@ class Page extends React.Component  {
          display="flex" 
          justifyContent="center" 
           >
-          <h1>Account Balance (current balance will go here)</h1>
+          <h1>Account Balance: {balance}</h1>
             
         </Box>
         {/* Box container fro the income and expense component */}
         <Box display="flex"
             justifyContent="space-between">
-            <Income />
+            <Income income={income} />
             <Expense />
         </Box>
 
@@ -55,7 +78,9 @@ class Page extends React.Component  {
             >
                 <Button variant="outlined" 
                 color="primary"
-                onClick={this.props.prev}>
+                //needs to take me to step 0
+                onClick={this.props.login}
+                >
                     Log Out
                 </Button>
             </Box>

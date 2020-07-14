@@ -1,82 +1,72 @@
-import React from 'react'
-import Page from './Page.js'
-import UserDetails from './UserDetails';
+import React from 'react';
+import AppBar from '@material-ui/core/AppBar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
+import Toolbar from '@material-ui/core/Toolbar';
+import TextField from '@material-ui/core/TextField';
+import { Container } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
+import { flexbox } from '@material-ui/system';
 
 
 
-class Login extends React.Component{
-    constructor(props){
-    super(props);
-    this.state = {
-        step: 1,
-        firstName: '',
-        lastName: '',
-        email: '',
-        }
-    }
-    //will have a method to proceed to the next step
-    nextStep = () => {
-        const {step} = this.state;
-        this.setState({
-            step: step +1
-        })
-    }
-
-    //method to take form to the previous page 
-      prevStep = () => {
-        const {step} = this.state;
-        this.setState({
-            step: step -1
-        });
-    }
-
-    //handle change in the input field 
-    handleChange = (input) => e => {
-        this.setState({[input]: e.target.value})
-        
-    };
-
-    render(){
-        const {step} = this.state;
-        const {firstName, lastName, email} = this.state;
-        // this is so i can pass the values into each component 
-        const values = {firstName, lastName, email};
-
-        switch(step){
-            case 1: 
-            return(
-                <div>
-                    
-                    <UserDetails next={this.nextStep} change={this.handleChange} values = {values}/>
-                </div>
-            )
-            break;
-            case 2:
-            return(
-                <div>
-                    <Page 
-                    prev={this.prevStep}
-                    values={values}
-                    >
-                        
-                    </Page>
-                </div>
-            )
-            break;
-        default:
-        return(
-            <div>
-                <h1> Error </h1>
-            </div>
-        )
-    }
-        return(
-            <div>
-                Test
-            </div>
-        )
-    }
+const Login = (props) => {
+    
+    return(
+      <div>
+      
+        <AppBar position="static">
+            <Toolbar>
+                <Typography variant="h6" style={{ flex: 1 }}>
+                    Expense Tracker
+                </Typography>
+            <Button color="inherit" onClick={props.next}>Sign Up</Button>
+            </Toolbar>
+        </AppBar>
+        <Container maxWidth="sm">
+         <Box
+         display="flex" 
+         justifyContent="center" 
+         
+         >
+             <form  noValidate autoComplete="on">
+                <TextField 
+                id="standard-basic" 
+                label="Username" 
+                onChange={props.change('userName')}
+                
+                
+                //this has the values stay in the field
+                
+                />
+                <br/>
+                <TextField 
+                id="filled-basic" 
+                label="Password" 
+                onChange={props.change('passWord')}
+                
+                
+                
+                />
+            </form>
+            </Box>
+                <br/>
+            <Box 
+            display="flex"
+            justifyContent="center" 
+            >
+                <Button variant="outlined" 
+                color="primary"
+                //this onclick needs to take me to step two
+                onClick={props.toPage}
+                >
+                    Log In
+                </Button>
+            </Box>
+        </Container>
+      </div>
+    )
 }
 
 
-export default Login
+export default Login;

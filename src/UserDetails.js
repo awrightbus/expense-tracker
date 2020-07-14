@@ -20,7 +20,7 @@ const UserDetails = (props) => {
                 <Typography variant="h6" style={{ flex: 1 }}>
                     Expense Tracker
                 </Typography>
-            <Button color="inherit">Not Logged In</Button>
+            <Button color="inherit" onClick={props.prev}>Log in</Button>
             </Toolbar>
         </AppBar>
         <Container maxWidth="sm">
@@ -30,29 +30,30 @@ const UserDetails = (props) => {
          
          >
              <form  noValidate autoComplete="on">
-                <TextField 
-                id="standard-basic" 
-                label="First name" 
+                 <TextField 
+                id="filled-basic" 
+                label="user name" 
+                onChange={props.change('userName')}
+                defaultValue ={props.values.userName}
+                 />
                 
-                onChange={props.change('firstName')}
-                //this has the values stay in the field
-                defaultValue ={props.values.firstName}
-                />
                 <br/>
+    
                 <TextField 
                 id="filled-basic" 
-                label="Last name" 
+                label="password" 
+                onChange={props.change('passWord')}
                 
-                onChange={props.change('lastName')}
-                defaultValue ={props.values.lastName}
-                />
+                 />
                 <br/>
                 <TextField 
                 id="filled-basic" 
                 label="Enter email address" 
                 onChange={props.change('email')}
-                defaultValue ={props.values.email}
+                
                  />
+                 <br/>
+               
             </form>
             </Box>
                 <br/>
