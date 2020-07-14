@@ -3,6 +3,7 @@ import Page from './Page.js'
 import UserDetails from './UserDetails';
 
 
+
 class Login extends React.Component{
     constructor(props){
     super(props);
@@ -56,7 +57,9 @@ class Login extends React.Component{
                     <Page 
                     prev={this.prevStep}
                     values={values}
-                    />
+                    >
+                        
+                    </Page>
                 </div>
             )
             break;
