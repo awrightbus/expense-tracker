@@ -5,7 +5,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Toolbar from '@material-ui/core/Toolbar';
-import TextField from '@material-ui/core/TextField';
 import { Container } from '@material-ui/core';
 import Box from '@material-ui/core/Box';
 import { flexbox } from '@material-ui/system';
@@ -17,7 +16,7 @@ class Page extends React.Component  {
     constructor(props){
         super(props);
         this.state = {
-            balance:'20000',
+            balance:'$$$$',
             value:'',
             userInput: '',
             income: [{
@@ -39,7 +38,11 @@ class Page extends React.Component  {
             expense: [],
                     }
     }
-
+//delete item
+delItemIncome = (id) => {
+    //only want to return income that doesnt match the id
+    this.setState({income:[...this.state.income.filter(income => income.id !== id)]})
+}
   
 
     render(){
@@ -65,13 +68,13 @@ class Page extends React.Component  {
             
         </Box>
         {/* Box container fro the income and expense component */}
-        <Box display="flex"
-            justifyContent="space-between">
-            <Income income={income} />
-            <Expense />
+        <Box>
+            <Income 
+            delItemIncome={this.delItemIncome} 
+            income={income} />
+            <Expense expense={expense}/>
         </Box>
-
-                <br/>
+        <br/>
             <Box 
             display="flex"
             justifyContent="center" 
